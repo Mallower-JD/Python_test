@@ -79,7 +79,6 @@ def openRegistration():
 #	Функция открытия окна "Администратор" 
 def openAdministrator():
 	global Admin
-	app = QtWidgets.QApplication(sys.argv)
 	Admin = QtWidgets.QWidget()
 	ui = Ui_Admin()
 	ui.setupUi(Admin)
