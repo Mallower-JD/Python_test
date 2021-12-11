@@ -10,7 +10,7 @@ from Admin import Ui_Admin
 from Admissions import Ui_Admission_Officer
 #------------------------------------------------------------------
 #	бд для регистриции
-db = sqlite3.connect('database_1.db')
+db = sqlite3.connect('list_login.db')
 cursor = db.cursor()
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS users(
@@ -25,7 +25,7 @@ for i in cursor.execute('SELECT * FROM users'):
 
 #------------------------------------------------------------------
 #	бд для списка специальностей
-db1 = sqlite3.connect('list_kod_1.db')
+db1 = sqlite3.connect('list_kod.db')
 cursor1 = db1.cursor()
 
 cursor1.execute('''CREATE TABLE IF NOT EXISTS spec(
@@ -38,7 +38,7 @@ for j in cursor1.execute('SELECT * FROM spec'):
 #------------------------------------------------------------------
 
 #------------------------------------------------------------------
-#	бд для списка специальностей
+#	бд для списка абитуриента
 db2 = sqlite3.connect('reg_abiturient.db')
 cursor2 = db2.cursor()
 
@@ -64,6 +64,8 @@ LoginWindow.show()
 def log():
 	user_login = ui.log_login.text()
 	user_password = ui.log_password.text()
+	user_login1 = ui.log_login.text()
+	user_password1 = ui.log_password.text()
 
 	if len(user_login) == 0:
 		return
@@ -77,11 +79,23 @@ def log():
 	cursor.execute(f'SELECT login FROM users WHERE login="{user_login}"')
 	check_login = cursor.fetchall()
 
+	cursor2.execute(f'SELECT password FROM abiturient WHERE password ="{user_password1}"')
+	check_pass1 = cursor2.fetchall()
+
+	cursor2.execute(f'SELECT login FROM abiturient WHERE login ="{user_login1}"')
+	check_login1 = cursor2.fetchall()
+
 	if check_pass[0][0] == user_password and check_login[0][0] == user_login:
 		print('Успешная авторизация!')
 		LoginWindow.close()
 		return openAdmissions()
-		
+	else:
+		print('Ошибка авторизации!')
+
+	if check_pass1[0][0] == user_password and check_login1[0][0] == user_login:
+		print('Успешная авторизация!')
+		LoginWindow.close()
+		return openAdministrator()
 	else:
 		print('Ошибка авторизации!')
 
@@ -269,8 +283,6 @@ def openAdmissions():
 		Admission_Officer.close()
 		LoginWindow.show()
 	
-
-
 	ui.abit_entry.clicked.connect(reg_abiturient)
 	ui.abit_del.clicked.connect(delete)
 	ui.abit_cancel.clicked.connect(retrunToLoginWindow)
