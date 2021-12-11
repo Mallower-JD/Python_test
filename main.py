@@ -4,10 +4,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel, QSqlQueryModel
 
-from LoginWindow import Ui_LoginWindow
+from Login import Ui_LoginWindow
 from Registation import Ui_Registration
 from Admin import Ui_Admin
-
+from Admissions import Ui_Admission_Officer
+#------------------------------------------------------------------
 #	бд для регистриции
 db = sqlite3.connect('database_1.db')
 cursor = db.cursor()
@@ -20,7 +21,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS users(
 db.commit()
 for i in cursor.execute('SELECT * FROM users'):
 	print(i)
-
+#------------------------------------------------------------------
 
 #------------------------------------------------------------------
 #	бд для списка специальностей
@@ -34,8 +35,23 @@ cursor1.execute('''CREATE TABLE IF NOT EXISTS spec(
 db1.commit()
 for j in cursor1.execute('SELECT * FROM spec'):
 	print(j)
+#------------------------------------------------------------------
 
+#------------------------------------------------------------------
+#	бд для списка специальностей
+db2 = sqlite3.connect('reg_abiturient.db')
+cursor2 = db2.cursor()
 
+cursor2.execute('''CREATE TABLE IF NOT EXISTS abiturient(
+	name2 TEXT,
+    ball TEXT,
+	login TEXT,
+	password TEXT
+)''')
+db1.commit()
+for a in cursor2.execute('SELECT * FROM abiturient'):
+	print(a)
+#------------------------------------------------------------------
 
 #	Хуйня открывающее базовое логина окно!
 app = QtWidgets.QApplication(sys.argv)
@@ -64,7 +80,7 @@ def log():
 	if check_pass[0][0] == user_password and check_login[0][0] == user_login:
 		print('Успешная авторизация!')
 		LoginWindow.close()
-		return openAdministrator()
+		return openAdmissions()
 		
 	else:
 		print('Ошибка авторизации!')
@@ -81,7 +97,7 @@ def openRegistration():
 	LoginWindow.close()
 	Registration.show()
 	
-	#	новая хуита
+	#	регистрация
 	def reg():
 		user_name = ui.reg_FIO.text()
 		user_login = ui.reg_login.text()
@@ -185,10 +201,85 @@ def openAdministrator():
 	ui.pushButton.clicked.connect(add)
 	ui.pushButton_2.clicked.connect(delete)
 
+def openAdmissions():
+	global Admission_Officer
+	Admission_Officer = QtWidgets.QWidget()
+	ui = Ui_Admission_Officer()
+	ui.setupUi(Admission_Officer)
+	Admission_Officer.show()
+	LoginWindow.close()
+
+	def reg_abiturient():
+		abit_name = ui.abit_FIO.text()
+		abit_ball = ui.abit_ball.text()
+		abit_login = ui.abit_login.text()
+		abit_password = ui.abit_password.text()
+
+		if len(abit_name) == 0:
+			return
+		
+		if len(abit_ball) == 0:
+			return
+
+		if len(abit_login) == 0:
+			return
+
+		if len(abit_password) == 0:
+			return
+
+		cursor2.execute(f'SELECT name2 FROM abiturient WHERE name2 ="{abit_name}"')
+		if cursor2.fetchone() is None:
+			cursor2.execute(f'INSERT INTO abiturient VALUES (?,?,?,?)',(abit_name, abit_ball ,abit_login, abit_password) )
+			db2.commit()
+			print("Регистрация абитуриента " + str(abit_name) + " успешна!")
+			for a in cursor2.execute('SELECT * FROM abiturient'):
+				print(a)
+		else:
+			print("Такая запись уже имеется!")
+
+	def delete():
+		abit_name = ui.abit_FIO.text()
+		abit_ball = ui.abit_ball.text()
+		abit_login = ui.abit_login.text()
+		abit_password = ui.abit_password.text()
+
+		if len(abit_name) == 0:
+			return
+		
+		if len(abit_ball) == 0:
+			return
+
+		if len(abit_login) == 0:
+			return
+
+		if len(abit_password) == 0:
+			return
+
+		cursor2.execute(f'SELECT name2 FROM abiturient WHERE name2="{abit_name}"')
+		if cursor2.fetchone() is None:
+			print(abit_name + " - такой записи нет!")
+		else:
+			cursor2.execute(f'DELETE FROM abiturient WHERE name2 = "{abit_name}"')
+			db2.commit()
+			print(abit_name + " успешно удалено!")
+			for a in cursor2.execute('SELECT * FROM abiturient'):
+				print(a)
+
+	def retrunToLoginWindow():
+		Admission_Officer.close()
+		LoginWindow.show()
+	
+
+
+	ui.abit_entry.clicked.connect(reg_abiturient)
+	ui.abit_del.clicked.connect(delete)
+	ui.abit_cancel.clicked.connect(retrunToLoginWindow)
+
+	
 
 #	Само открыте окна "Регистрации"
 ui.log_reg.clicked.connect(openRegistration)
-#	Открытие окна "Администратор"(список спец.)
+#	Открытие окна 
 ui.log_entry.clicked.connect(log)
 
 

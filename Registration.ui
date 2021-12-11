@@ -35,16 +35,6 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QComboBox" name="reg_works">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>80</y>
-     <width>475</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="reg_login">
    <property name="geometry">
     <rect>
@@ -84,7 +74,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Зарегистрироваться</string>
+    <string>Зарегистрировать</string>
    </property>
   </widget>
   <widget class="QPushButton" name="reg_cancel">
@@ -98,6 +88,22 @@
    </property>
    <property name="text">
     <string>Отмена</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="reg_login_2">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>80</y>
+     <width>475</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Суммарные баллы за ЕГЭ</string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

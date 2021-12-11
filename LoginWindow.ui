@@ -42,24 +42,11 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="log_reg">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>260</y>
-      <width>120</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Регистрация</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="log_entry">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>260</y>
+      <x>200</x>
+      <y>220</y>
       <width>120</width>
       <height>50</height>
      </rect>

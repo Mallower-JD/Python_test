@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Ui_Admin implementation generated from reading ui file 'Admin.ui'
+# Admin implementation generated from reading ui file 'Admin.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -12,42 +12,41 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Admin(object):
-    def setupUi(self, Ui_Admin):
-        Ui_Admin.setObjectName("Ui_Admin")
-        Ui_Admin.resize(800, 550)
-        self.lineEdit = QtWidgets.QLineEdit(Ui_Admin)
+    def setupUi(self, Admin):
+        Admin.setObjectName("Admin")
+        Admin.resize(800, 550)
+        self.lineEdit = QtWidgets.QLineEdit(Admin)
         self.lineEdit.setGeometry(QtCore.QRect(20, 40, 230, 30))
         self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit_2 = QtWidgets.QLineEdit(Ui_Admin)
+        self.lineEdit_2 = QtWidgets.QLineEdit(Admin)
         self.lineEdit_2.setGeometry(QtCore.QRect(20, 100, 230, 30))
         self.lineEdit_2.setObjectName("lineEdit_2")
-        self.pushButton = QtWidgets.QPushButton(Ui_Admin)
+        self.pushButton = QtWidgets.QPushButton(Admin)
         self.pushButton.setGeometry(QtCore.QRect(40, 230, 150, 50))
         self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(Ui_Admin)
+        self.pushButton_2 = QtWidgets.QPushButton(Admin)
         self.pushButton_2.setGeometry(QtCore.QRect(40, 300, 150, 50))
         self.pushButton_2.setObjectName("pushButton_2")
-        self.tableWidget = QtWidgets.QTableWidget(Ui_Admin)
-        self.tableWidget.setGeometry(QtCore.QRect(279, 20, 502, 480))
+        self.tableWidget = QtWidgets.QTableWidget(Admin)
+        self.tableWidget.setGeometry(QtCore.QRect(280, 20, 502, 480))
         self.tableWidget.setColumnCount(2)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setRowCount(0)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(250)
         self.tableWidget.horizontalHeader().setMinimumSectionSize(50)
-        self.tableWidget.setHorizontalHeaderLabels(("Код специализации","Наименование специализации"))
-        self.label = QtWidgets.QLabel(Ui_Admin)
+        self.label = QtWidgets.QLabel(Admin)
         self.label.setGeometry(QtCore.QRect(10, 140, 261, 61))
         self.label.setObjectName("label")
 
-        self.retranslateUi(Ui_Admin)
+        self.retranslateUi(Admin)
         self.pushButton.clicked.connect(self.label.show)
-        QtCore.QMetaObject.connectSlotsByName(Ui_Admin)
+        QtCore.QMetaObject.connectSlotsByName(Admin)
 
-    def retranslateUi(self, Ui_Admin):
+    def retranslateUi(self, Admin):
         _translate = QtCore.QCoreApplication.translate
-        Ui_Admin.setWindowTitle(_translate("Ui_Admin", "Admin"))
-        self.lineEdit.setPlaceholderText(_translate("Ui_Admin", "Код"))
-        self.lineEdit_2.setPlaceholderText(_translate("Ui_Admin", "Название"))
-        self.pushButton.setText(_translate("Ui_Admin", "Добавить"))
-        self.pushButton_2.setText(_translate("Ui_Admin", "Удалить"))
-        self.label.setText(_translate("Ui_Admin", "Для продолжения перезагрузите страницу!"))
+        Admin.setWindowTitle(_translate("Admin", "Admin"))
+        self.lineEdit.setPlaceholderText(_translate("Admin", "Код"))
+        self.lineEdit_2.setPlaceholderText(_translate("Admin", "Название"))
+        self.pushButton.setText(_translate("Admin", "Добавить"))
+        self.pushButton_2.setText(_translate("Admin", "Удалить"))
+        self.label.setText(_translate("Admin", "Для продолжения перезагрузите страницу!"))
