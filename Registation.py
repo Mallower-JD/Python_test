@@ -25,7 +25,6 @@ class Ui_Registration(object):
         self.reg_works.setGeometry(QtCore.QRect(60, 80, 475, 25))
         self.reg_works.setObjectName("reg_works")
         self.reg_works.addItem("Администратор")
-        self.reg_works.addItem("Абитуриент")
         self.reg_works.addItem("Секретарь")
         self.reg_works.addItem("Служащий приемной комиссии")
         self.reg_login = QtWidgets.QLineEdit(Registration)
